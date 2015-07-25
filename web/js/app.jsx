@@ -1,20 +1,14 @@
-/**
- * DECRIPTION
- *
- */
-
 import React from 'react';
+import Router from 'react-router';
+import Routes from './routes';
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+var {
+  Route,
+  RouteHandler,
+  HistoryLocation
+} = Router;
 
-  render() {
-    return (
-      <div>App Component</div>
-    );
-  }
-}
+Router.run(Routes, HistoryLocation, (App) => {
+  React.render(<App/>, document.body);
+})
 
-React.render(<App/>, document.getElementById('content'));

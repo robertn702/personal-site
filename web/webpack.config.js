@@ -2,13 +2,14 @@ var
   path = require('path'),
   webpack = require('webpack');
 
-console.log('require.resolve("react") in webpack.config.js: ', require.resolve("react"));
-
 module.exports = {
-  entry: "./js/app",
+  entry: {
+    vendor: []
+    app: './js/app',
+  },
   output: {
     path: __dirname,
-    filename: "main.js"
+    filename: 'main.js'
   },
   resolve: {
     modulesDirectories: ['node_modules', 'bower_components'],
