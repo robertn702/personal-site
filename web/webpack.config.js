@@ -6,6 +6,7 @@ module.exports = {
   entry: {
     app: './js/app',
     vendor: [
+      'baconjs',
       'classnames',
       'jquery',
       'lodash',
@@ -27,10 +28,10 @@ module.exports = {
   },
   module: {
     loaders: [
-      { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader' },
-      { test: /\.jsx$/, exclude: /node_modules/, loader: 'babel-loader' },
-      { test: require.resolve('react'), loader: 'expose?React' }
-      { test: require.resolve('radium'), loader: 'expose?Radium' }
+      { test: /\.(js|.jsx)$/, exclude: /node_modules/, loader: 'babel-loader' },
+      { test: require.resolve('react'), loader: 'expose?React' },
+      { test: require.resolve('radium'), loader: 'expose?Radium' },
+      { test: require.resolve('baconjs'), loader: 'expose?Bacon' }
     ]
   }
 };

@@ -1,7 +1,8 @@
+import Bacon from 'baconjs';
+import Radium from 'radium';
 import React from 'react';
 import Router from 'react-router';
 import Routes from './routes';
-import Radium from 'radium';
 
 var {
   Route,
