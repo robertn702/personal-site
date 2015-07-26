@@ -1,4 +1,5 @@
 import { RouteHandler } from 'react-router';
+import Board from '../home/home_board';
 
 /**
  * DECRIPTION
@@ -12,11 +13,15 @@ class MainPage extends React.Component {
     // this.state = {  };
   }
 
+  componentDidMount() {
+
+  }
+
   render() {
     return (
-      <div>
+      <div id="">
         <h1>App</h1>
-        <RouteHandler/>
+        <Board/>
       </div>
     );
   }

@@ -12,7 +12,8 @@ module.exports = {
       'lodash',
       'radium',
       'react',
-      'react-router'
+      'react-router',
+      'svg.js'
     ]
   },
   output: {
@@ -20,6 +21,13 @@ module.exports = {
     filename: 'bundle.js'
   },
   plugins: [
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      _: 'lodash',
+      Bacon: 'baconjs',
+      Radium: 'radium',
+      SVG: 'svg.js'
+    }),
     new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.bundle.js')
   ],
   resolve: {
@@ -28,10 +36,8 @@ module.exports = {
   },
   module: {
     loaders: [
-      { test: /\.(js|.jsx)$/, exclude: /node_modules/, loader: 'babel-loader' },
-      { test: require.resolve('react'), loader: 'expose?React' },
-      { test: require.resolve('radium'), loader: 'expose?Radium' },
-      { test: require.resolve('baconjs'), loader: 'expose?Bacon' }
+      { test: /\.(js|jsx)$/, exclude: /node_modules/, loader: 'babel-loader' },
+      { test: require.resolve('react'), loader: 'expose?React' }
     ]
   }
 };
