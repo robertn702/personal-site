@@ -20,7 +20,6 @@ class MainPage extends React.Component {
   render() {
     return (
       <div id="">
-        <h1>App</h1>
         <Board/>
       </div>
     );

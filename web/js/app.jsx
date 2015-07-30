@@ -1,4 +1,5 @@
 import { Bacon } from 'baconjs';
+import d3 from 'd3';
 import Radium from 'radium';
 import React from 'react';
 import Router from 'react-router';

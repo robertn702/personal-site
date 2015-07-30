@@ -8,6 +8,7 @@ module.exports = {
     vendor: [
       'baconjs',
       'classnames',
+      'd3',
       'jquery',
       'lodash',
       'radium',
@@ -17,7 +18,7 @@ module.exports = {
     ]
   },
   output: {
-    path: __dirname,
+    path: path.join(__dirname, 'js'),
     filename: 'bundle.js'
   },
   plugins: [
@@ -25,13 +26,19 @@ module.exports = {
       $: 'jquery',
       _: 'lodash',
       Bacon: 'baconjs',
+      d3: 'd3',
       Radium: 'radium',
       SVG: 'svg.js'
     }),
     new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.bundle.js')
   ],
   resolve: {
-    modulesDirectories: ['node_modules', 'bower_components'],
+    modulesDirectories: [
+      './js/actions',
+      './js/stores',
+      'bower_components',
+      'node_modules'
+    ],
     extensions: ['', '.js', '.jsx', '.json']
   },
   module: {

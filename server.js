@@ -3,11 +3,9 @@ var
   app = express(),
   path = require('path');
 
-app.get('/', function(req, res) {
-  res.sendFile(path.join(__dirname, '/web/index.html'));
-});
-
 app.use(express.static(__dirname + '/web'));
+
+require(__dirname + '/server/routes.js')(app);
 
 app.listen(8080);
 
