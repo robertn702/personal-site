@@ -1,4 +1,5 @@
 import { RouteHandler } from 'react-router';
+import HomeBoardController from '../home/home_board_controller';
 import Board from '../home/home_board';
 
 /**
@@ -20,7 +21,7 @@ class MainPage extends React.Component {
   render() {
     return (
       <div id="">
-        <Board/>
+        <HomeBoardController/>
       </div>
     );
   }

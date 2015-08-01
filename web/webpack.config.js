@@ -12,7 +12,7 @@ module.exports = {
       'jquery',
       'lodash',
       'radium',
-      'react',
+      'react/addons',
       'react-router',
       'svg.js'
     ]
@@ -35,7 +35,9 @@ module.exports = {
   resolve: {
     modulesDirectories: [
       './js/actions',
+      './js/constants',
       './js/stores',
+      './js/utils',
       'bower_components',
       'node_modules'
     ],
@@ -44,7 +46,7 @@ module.exports = {
   module: {
     loaders: [
       { test: /\.(js|jsx)$/, exclude: /node_modules/, loader: 'babel-loader' },
-      { test: require.resolve('react'), loader: 'expose?React' }
+      { test: require.resolve('react/addons'), loader: 'expose?React' }
     ]
   }
 };

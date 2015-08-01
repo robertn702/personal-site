@@ -4,30 +4,34 @@
  * @prop {object}  - PROP_DESCRIPTION
  */
 
-import STORE from 'STORE';
+import HomeBoardStore from 'home_board_store';
 import HomeBoard from './home_board';
 
 class HomeBoardController extends React.Component {
   constructor(props) {
     super(props);
-    this.state = STORE.GET_STATE
+    this.state = {
+      coordinates: HomeBoardStore.getCoordinates()
+    }
     // this.state = {  };
   }
 
+  _onChange() {
+    this.setState({
+      coordinates: HomeBoardStore.getCoordinates()
+    });
+  }
+
   componentDidMount() {
-    STORE.addChangeListener(this._onChange);
+    HomeBoardStore.addChangeListener(this._onChange.bind(this));
   }
 
   componentWillUnmount() {
-    STORE.removeChangeListener(this._onChange);
+    HomeBoardStore.removeChangeListener(this._onChange.bind(this));
   }
 
   render() {
-    // console.log('[home_board_controller.jsx] props: ', this.props);
-    // console.log('[home_board_controller.jsx] state: ', this.state);
-
-    // let {  } = this.props;
-    // let {  } = this.state;
+  // console.log('[home_board_controller.jsx] state: ', this.state);
 
     return (
       <HomeBoard {...this.state}/>

@@ -9,16 +9,15 @@ Dispatcher.prototype = _.assign({}, Dispatcher.prototype, {
 
   register: function(callback) {
     _callbacks.push(callback);
-    return callbacks.length - 1;
+    return _callbacks.length - 1; // index
   },
 
   dispatch: function(payload) {
     var resolves = [];
     var rejects = [];
-
     _promises = _callbacks.map(function(_, i) {
       return new Promise(function(resolve, reject) {
-        resolves[i] = resolves;
+        resolves[i] = resolve;
         rejects[i] = reject;
       });
     });

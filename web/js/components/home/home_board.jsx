@@ -17,9 +17,7 @@ class HomeBoard extends React.Component {
     // this.state = {  };
   }
 
-
   _handleKeyDown(e) {
-    console.log('[home_board.jsx] you pressed a key: ', e);
     HomeBoardActions.handleKeyDown(e);
   }
 
@@ -28,22 +26,38 @@ class HomeBoard extends React.Component {
   }
 
   _renderSVG() {
-    let svg = d3
-      .select('#home-board')
-      .append('svg')
-      .attr('width', CANVAS.width)
-      .attr('height', CANVAS.height);
+    let { coordinates } = this.props;
 
-    svg
+    let svg = d3.select('#home-board')
+      .append('svg')
+      .attr('width', 500)
+      .attr('height', 100);
+
+    let circle = svg
+      .datum(coordinates)
       .append('circle')
-      .attr('cx', CANVAS.width/2)
-      .attr('cy', CANVAS.height/2)
+      .attr('cx', function(d) { return d.x; })
+      .attr('cy', function(d) { return d.y; })
       .attr('r', '10px')
       .attr('fill', 'red');
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  _move(coordinates) {
+    d3.select('#home-board').select('svg').select('circle')
+      .datum(coordinates)
+      // .transition()
+      .attr('cx', function(d) { return d.x; })
+      .attr('cy', function(d) { return d.y; });
+  }
 
+  componentDidUpdate(prevProps, prevState) {
+    let movedX = (prevProps.coordinates.x !== this.props.coordinates.x);
+    let movedY = (prevProps.coordinates.y !== this.props.coordinates.y);
+    let moved = (movedX || movedY);
+
+    if ( moved ) {
+      this._move(this.props.coordinates);
+    };
   }
 
   componentDidMount() {
@@ -65,17 +79,15 @@ class HomeBoard extends React.Component {
     // let {  } = this.state;
 
     return (
-      <div id='home-board' onKeyDown={this._handleKeyDown.bind(this)} onClick={this._clicked.bind(this)}>
-        Home Board
-      </div>
+      <div id='home-board'></div>
     );
   }
 }
 
 HomeBoard.displayName = 'HomeBoard';
 
-// HomeBoard.propTypes = {
-//   : React.PropTypes.object
-// };
+HomeBoard.propTypes = {
+  coordinates: React.PropTypes.object
+};
 
 module.exports = HomeBoard;
